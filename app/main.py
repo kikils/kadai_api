@@ -110,7 +110,7 @@ def stocker():
 
         sales = 0
         if (price is not None
-                and re.search(r'[0-9]', str(price))
+                and re.search(r'^\d+$', str(price))
                 and int(price) > 0):
             sales  = int(amount) * int(price)
         query = Product.update(amount=Product.amount - amount, sales=Product.sales + sales).where(Product.name == name)
