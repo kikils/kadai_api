@@ -1,8 +1,10 @@
-FROM python:3.7-slim-buster
+FROM python:3.7.4-alpine
 ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update && \
-    apt-get upgrade -y
+RUN apk update && \
+    apk add --virtual build-deps gcc python-dev musl-dev && \
+    apk add postgresql-dev && \
+    apk add netcat-openbsd
 
 RUN pip install --upgrade pip
 
