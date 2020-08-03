@@ -7,7 +7,7 @@ app = Flask(__name__)
 auth = HTTPBasicAuth()
 USERS = {
     'name': os.environ.get('BASIC_AUTH_NAME'),
-    'password': os.environ.get('BASIC_AYTH_PW')
+    'password': os.environ.get('BASIC_AUTH_PW')
 }
 ERROR_TEMPLATE_PATH = './templates/401.html'
 
