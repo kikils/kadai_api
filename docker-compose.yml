@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app:
+    build: ./app
+    container_name: api_app
+    tty: true
+    volumes:
+      - ./app:/code
+    stdin_open: true
+    ports:
+        - 5000:5000
+    depends_on:
+        - postgres
+
+  postgres:
+    image: postgres:10
+    container_name: api_db
+    ports:
+        - 5432:5432
+    volumes:
+        - ./db/init/:/docker-entrypoint-initdb.d/:ro
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=postgres
