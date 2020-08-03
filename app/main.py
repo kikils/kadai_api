@@ -1,6 +1,7 @@
 import os
+import re
 
-from flask import Flask
+from flask import Flask, request
 from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__)
@@ -35,6 +36,15 @@ def index():
 def auth():
     context = 'SUCCESS'
     return context
+
+@app.route('/calc')
+def calc():
+    formula = request.query_string.decode('utf-8', '')
+    if formula is None:
+        return 'ERROR'
+    if re.match(r'[0-9\+\-\*\(\)\/]', formula) is None:
+        return 'ERROR'
+    return str(eval(formula))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
