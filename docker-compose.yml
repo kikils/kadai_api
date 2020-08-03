@@ -8,7 +8,11 @@ services:
       - ./app:/code
     stdin_open: true
     ports:
-        - 5000:5000
+        - 5000:80
+    environment:
+        - FLASK_APP=main.py
+        - FLASK_ENV=development
+    command: ./dev.sh
     depends_on:
         - postgres
 
