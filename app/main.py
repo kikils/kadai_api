@@ -30,7 +30,7 @@ def index():
     context = 'AMAZON'
     return context
 
-@app.route('/secret')
+@app.route('/secret/')
 @auth.login_required
 def auth():
     context = 'SUCCESS'
